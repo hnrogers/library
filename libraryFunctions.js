@@ -28,6 +28,7 @@ function home() {   // home page
 function collection() {     // full collection page
     document.getElementById("bookForm").style.display = "none";
     document.getElementById("allBooks").style.display = "block";
+    document.getElementById("testTable").style.display = "block";
     
     if (myLibrary.length == 0) {
         document.getElementById("viewer").innerHTML = "The library is empty!!";
@@ -89,6 +90,7 @@ function deleteBooks() {
                 currentUnread -= 1; //////// chek this
             }
         myLibrary.splice(toChange[i], 1);
+        document.getElementById("tt").deleteRow(toChange[i] + 1);
     }
 
     decra = 0;
@@ -121,7 +123,10 @@ function unreadBooks() {
     for (let i = 0; i < toChange.length; i++) {
         myLibrary[toChange[i]].markUnread();
         currentUnread += 1;
-        console.log(myLibrary[toChange[i]])
+        console.log(myLibrary[toChange[i]]);
+        document.getElementById("tt").rows[toChange[i] + 1].cells[0].style.fontWeight = "bold";
+        document.getElementById("tt").rows[toChange[i] + 1].cells[1].style.fontWeight = "bold";
+        document.getElementById("tt").rows[toChange[i] + 1].cells[2].style.fontWeight = "bold";
     }
 
     document.getElementById("unreadNotif").innerHTML = "(new!)"
@@ -155,6 +160,10 @@ function readBooks() {
         myLibrary[toChange[i]].markRead();
         currentUnread -= 1;
         console.log(myLibrary[toChange[i]])
+        console.log(myLibrary[toChange[i]]);
+        document.getElementById("tt").rows[toChange[i] + 1].cells[0].style.fontWeight = "normal";
+        document.getElementById("tt").rows[toChange[i] + 1].cells[1].style.fontWeight = "normal";
+        document.getElementById("tt").rows[toChange[i] + 1].cells[2].style.fontWeight = "normal";
     }
 
     everyBook = [];
@@ -199,16 +208,41 @@ document.getElementById("addBook").addEventListener("click", () => {    // anony
     const a = document.getElementById("addAuthor").value;
     const f = document.getElementById("addGenre").checked;
 
+
     if (t === "" || a === "") {
         console.log("Missing required information");
     }
 
     else {
         const newBook = new book(t, a, f);
-    
         myLibrary.push(newBook);
         document.getElementById("unreadNotif").innerHTML = "(new!)";
         currentUnread += 1;
+
+        let row = document.createElement("tr");
+        let col1 = document.createElement("td");
+        col1.innerText = t;
+        row.appendChild(col1);
+
+        let col2 = document.createElement("td");
+        col2.innerText = a;
+        row.appendChild(col2);
+
+
+        let col3 = document.createElement("td");
+        col3.innerText = f;
+        row.appendChild(col3);
+
+
+        let col4 = document.createElement("td");
+        col4.innerHTML = `<input type="checkbox" class="selectBook2" id="${myLibrary.length - 1}a">`;
+        row.appendChild(col4);
+
+
+        document.getElementById("tt").appendChild(row);
+
+
+
     
         // clear values
         document.getElementById("addTitle").value = "";
@@ -243,3 +277,4 @@ document.getElementById("unreadBooks").addEventListener("click", unreadBooks);
 document.getElementById("readBooks").addEventListener("click", readBooks);
 
 document.getElementById("selectAll").addEventListener("change", selectAll);
+

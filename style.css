@@ -3,6 +3,7 @@ body {
     background-color:rgb(143, 140, 137);
 }
 
+
 #navi {
     background-color: rgb(97, 64, 16);
     color: rgb(219, 218, 195);
@@ -78,3 +79,6 @@ ul li:hover ul.dropdown {
     display: none;
 }
 
+#testTable {
+    display: none;
+}
