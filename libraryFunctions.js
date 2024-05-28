@@ -25,43 +25,22 @@ function home() {   // home page
     document.getElementById("selectAll").checked = false;
 }
 
-function collection() {     // full collection page
+function collection() {     // updated
     document.getElementById("bookForm").style.display = "none";
     document.getElementById("allBooks").style.display = "block";
-    document.getElementById("testTable").style.display = "block";
     
     if (myLibrary.length == 0) {
         document.getElementById("viewer").innerHTML = "The library is empty!!";
     }
 
     else {
-        currentBookList = "";
         
-        for (let i = 0; i < myLibrary.length; i++) {    
-            console.log(myLibrary[i].title);
-            
-            if (myLibrary[i].seen === false) {
-                currentBookList += "<strong>";
-            }
-
-            currentBookList += `${myLibrary[i].title} &emsp; 
-                                ${myLibrary[i].author} &emsp; 
-                                ${myLibrary[i].fiction} &emsp;
-                                <input type="checkbox" class="selectBook" id=${i}> &emsp;` 
-            
-            if (myLibrary[i].seen === false) {
-                currentBookList += "</strong><br>";
-            }
-
-            else {
-                currentBookList += "<br>";
-            }
-        }
-            document.getElementById("viewer").innerHTML = currentBookList;
+        document.getElementById("testTable").style.display = "block";
+        
     }
 }
 
-function deleteBooks() {
+function deleteBooks() {    // updated
     let everyBook = document.getElementsByClassName("selectBook");
     let decra = 0;
 
@@ -87,7 +66,7 @@ function deleteBooks() {
     for (let i = 0; i < toChange.length; i++) {
         if (myLibrary[toChange[i]].seen === false)
             {
-                currentUnread -= 1; //////// chek this
+                currentUnread -= 1;
             }
         myLibrary.splice(toChange[i], 1);
         document.getElementById("tt").deleteRow(toChange[i] + 1);
@@ -101,7 +80,7 @@ function deleteBooks() {
     document.getElementById("selectAll").checked = false;
 }
 
-function unreadBooks() {
+function unreadBooks() {    // updated 
     let everyBook = document.getElementsByClassName("selectBook");
 
     for (let i = 0; i < everyBook.length; i++) {  // get selected books in toChange
@@ -137,7 +116,7 @@ function unreadBooks() {
     collection();
 }
 
-function readBooks() {
+function readBooks() {  // updated 
     let everyBook = document.getElementsByClassName("selectBook");
 
     for (let i = 0; i < everyBook.length; i++) {  // get selected books in toChange
@@ -159,7 +138,6 @@ function readBooks() {
     for (let i = 0; i < toChange.length; i++) {
         myLibrary[toChange[i]].markRead();
         currentUnread -= 1;
-        console.log(myLibrary[toChange[i]])
         console.log(myLibrary[toChange[i]]);
         document.getElementById("tt").rows[toChange[i] + 1].cells[0].style.fontWeight = "normal";
         document.getElementById("tt").rows[toChange[i] + 1].cells[1].style.fontWeight = "normal";
@@ -173,11 +151,11 @@ function readBooks() {
     countUnread();
 }
 
-function newBookForm() {
+function newBookForm() {    // updated
     document.getElementById("bookForm").style.display = "block";
 }
 
-function selectAll() {      // select / deselct
+function selectAll() {      // select / deselct -- updated
     let everyBook = document.getElementsByClassName("selectBook");    
     
     if (document.getElementById("selectAll").checked === true) {
@@ -193,7 +171,7 @@ function selectAll() {      // select / deselct
     } 
 }
 
-function countUnread() {
+function countUnread() {       // updated 
     if (currentUnread > 0) {
         document.getElementById("unreadNotif").innerHTML = "(new!)";
     }
@@ -203,7 +181,7 @@ function countUnread() {
     }
 }
 
-document.getElementById("addBook").addEventListener("click", () => {    // anonymous function
+document.getElementById("addBook").addEventListener("click", () => {    // updated! 
     const t = document.getElementById("addTitle").value;
     const a = document.getElementById("addAuthor").value;
     const f = document.getElementById("addGenre").checked;
@@ -220,30 +198,30 @@ document.getElementById("addBook").addEventListener("click", () => {    // anony
         currentUnread += 1;
 
         let row = document.createElement("tr");
+        
         let col1 = document.createElement("td");
         col1.innerText = t;
+        col1.style.fontWeight = "bold";
         row.appendChild(col1);
 
         let col2 = document.createElement("td");
         col2.innerText = a;
+        col2.style.fontWeight = "bold";
         row.appendChild(col2);
 
 
         let col3 = document.createElement("td");
         col3.innerText = f;
+        col3.style.fontWeight = "bold";
         row.appendChild(col3);
 
 
         let col4 = document.createElement("td");
-        col4.innerHTML = `<input type="checkbox" class="selectBook2" id="${myLibrary.length - 1}a">`;
+        col4.innerHTML = `<input type="checkbox" class="selectBook" id="${myLibrary.length - 1}">`;
         row.appendChild(col4);
-
 
         document.getElementById("tt").appendChild(row);
 
-
-
-    
         // clear values
         document.getElementById("addTitle").value = "";
         document.getElementById("addAuthor").value = "";
@@ -256,7 +234,7 @@ document.getElementById("addBook").addEventListener("click", () => {    // anony
     }
 });
 
-document.getElementById("closeForm").addEventListener("click", () => {  // anonymous function
+document.getElementById("closeForm").addEventListener("click", () => {  // updated! 
     document.getElementById("addTitle").value = "";
     document.getElementById("addAuthor").value = "";
     document.getElementById("addGenre").checked = false;
@@ -277,4 +255,3 @@ document.getElementById("unreadBooks").addEventListener("click", unreadBooks);
 document.getElementById("readBooks").addEventListener("click", readBooks);
 
 document.getElementById("selectAll").addEventListener("change", selectAll);
-
