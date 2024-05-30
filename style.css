@@ -1,21 +1,25 @@
 
 body {
-    background-color:rgb(143, 140, 137);
+    background-color:rgb(82, 49, 124);
+    color: rgb(195, 205, 214);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
 #navi {
-    background-color: rgb(97, 64, 16);
-    color: rgb(219, 218, 195);
+    color: rgb(195, 205, 214);
+    font-size: 24px;
 }
 
 ul {
     list-style: none;
+    padding-left: 0%;
 }
 
 ul li {
     display: inline-block;
-    position: relative;
+    padding-left: 0%;
+    padding-right: 5px;
 }
 
 ul li ul.dropdown li {
@@ -29,15 +33,14 @@ ul li ul.dropdown {
 }
 
 ul li a {
-    background-color: rgb(97, 64, 16);
-    color: rgb(219, 218, 195);
+    color: rgb(195, 205, 214);
     height: 40px;
     padding-left: 15px;
     display: block;
 }
 
 ul li a:hover {
-    color:rgb(214, 194, 13);
+    color:rgb(115, 139, 206);
     cursor: pointer;
 }
 
@@ -48,10 +51,7 @@ ul li:hover ul.dropdown {
 
 
 #viewer {
-    align-content: center;
-    text-align: center;
-    margin: auto;
-    width: 25%;
+    display: none;
 }
 
 #standard {
@@ -62,11 +62,12 @@ ul li:hover ul.dropdown {
 
 #bookForm {
     position: absolute;
-    z-index: 5;
+    z-index: 10;
     border: solid;
     border-color: black;
-    border-width: 5px;
-    background-color: antiquewhite;
+    border-width: 3px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(149, 147, 182);
     width: 25;
     padding: 30px;
 }
@@ -77,8 +78,19 @@ ul li:hover ul.dropdown {
 
 #allBooks {
     display: none;
+    position: absolute;
 }
 
 #testTable {
     display: none;
+    position: relative;
 }
+
+th {
+    border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+th, td {
+    padding-right: 5px;
+}
+

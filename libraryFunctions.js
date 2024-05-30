@@ -20,23 +20,25 @@ function book(title, author, fiction) {     // book object
 
 function home() {   // home page
     document.getElementById("bookForm").style.display = "none";
-    document.getElementById("viewer").innerHTML = "";
     document.getElementById("allBooks").style.display = "none";
     document.getElementById("selectAll").checked = false;
+    document.getElementById("standard").style.display = "block";
 }
 
 function collection() {     // updated
     document.getElementById("bookForm").style.display = "none";
+    document.getElementById("standard").style.display = "none";
     document.getElementById("allBooks").style.display = "block";
     
     if (myLibrary.length == 0) {
-        document.getElementById("viewer").innerHTML = "The library is empty!!";
+        document.getElementById("viewer").style.display = "block";
+        document.getElementById("testTable").style.display = "none";
     }
 
     else {
-        
         document.getElementById("testTable").style.display = "block";
-        
+        document.getElementById("viewer").style.display = "none";
+
     }
 }
 

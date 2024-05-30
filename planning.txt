@@ -1,26 +1,10 @@
-Just the CSS now!
 
+- CSS (half done)
+- add ternary for fiction/nonfiction
 
-
-        //////
-        let row = document.createElement('tr');
-    
-        let col1 = document.createElement('td');
-        col1.innerText = t;
-        row.appendChild(col1);
-    
-        let col2 = document.createElement('td');
-        col2.innerText = a;
-        row.appendChild(col2);
-    
-        let col3 = document.createElement('td');
-        col3.innerText = f;
-        row.appendChild(col3);
-    
-        let col4 = document.createElement('td');
-        col4 = innerText = `<input type="checkbox" class="selectBook" id="${myLibrary.length - 1}a">`;
-        row.appendChild(col4);
-
-        document.getElementById("tt").appendChild(row);
-        //////
-
+ids:
+standard = home
+bookForm = add book
+allBooks = Collection
+        - empty
+        - items
